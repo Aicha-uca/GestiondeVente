@@ -152,5 +152,12 @@ namespace GestiondeVente
                 conx.cnxClose();
             }
             }
+
+        private void guna2ImageButton1_Click(object sender, EventArgs e)
+        {
+            Menu m = new Menu();
+            m.Show();
+            this.Hide();
+        }
     }
 }
