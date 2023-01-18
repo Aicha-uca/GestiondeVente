@@ -83,7 +83,7 @@
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(3, 442);
+            this.button1.Location = new System.Drawing.Point(3, 425);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(213, 49);
             this.button1.TabIndex = 7;
@@ -110,7 +110,7 @@
             this.btn_Commande.ForeColor = System.Drawing.Color.White;
             this.btn_Commande.Image = ((System.Drawing.Image)(resources.GetObject("btn_Commande.Image")));
             this.btn_Commande.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Commande.Location = new System.Drawing.Point(8, 378);
+            this.btn_Commande.Location = new System.Drawing.Point(8, 370);
             this.btn_Commande.Name = "btn_Commande";
             this.btn_Commande.Size = new System.Drawing.Size(208, 49);
             this.btn_Commande.TabIndex = 5;
@@ -128,7 +128,7 @@
             this.btn_Produit.ForeColor = System.Drawing.Color.White;
             this.btn_Produit.Image = ((System.Drawing.Image)(resources.GetObject("btn_Produit.Image")));
             this.btn_Produit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Produit.Location = new System.Drawing.Point(8, 314);
+            this.btn_Produit.Location = new System.Drawing.Point(8, 306);
             this.btn_Produit.Name = "btn_Produit";
             this.btn_Produit.Size = new System.Drawing.Size(208, 49);
             this.btn_Produit.TabIndex = 4;
@@ -164,7 +164,7 @@
             this.btn_Categorie.ForeColor = System.Drawing.Color.White;
             this.btn_Categorie.Image = ((System.Drawing.Image)(resources.GetObject("btn_Categorie.Image")));
             this.btn_Categorie.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Categorie.Location = new System.Drawing.Point(6, 250);
+            this.btn_Categorie.Location = new System.Drawing.Point(6, 241);
             this.btn_Categorie.Name = "btn_Categorie";
             this.btn_Categorie.Size = new System.Drawing.Size(210, 49);
             this.btn_Categorie.TabIndex = 2;

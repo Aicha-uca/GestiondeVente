@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace GestiondeVente
 {
@@ -39,7 +40,7 @@ namespace GestiondeVente
             dt = new DataTable();
             da = new MySqlDataAdapter(Command);
             da.Fill(dt);
-            dt = dt.DefaultView.ToTable(true, "id", "nom", "quantite", "prix", "cat", "description");
+            dt = dt.DefaultView.ToTable(true, "id", "nom", "quantite", "prix", "cat", "description","image");
             guna2DataGridView1.DataSource = dt;
             conx.cnxClose();
         }
@@ -104,8 +105,11 @@ namespace GestiondeVente
             {
                 try
                 {
-                    Byte[] image = img;
-                    Produits produits = new Produits(txt_nom.Text, Convert.ToInt32(txt_quantite.Text), Convert.ToDouble(txt_prix.Text), cmb_categorie.Text, txt_description.Text, image);
+                    // Byte[] image = img;
+                    MemoryStream ms = new MemoryStream();
+                    image.Image.Save(ms, image.Image.RawFormat);
+                    Byte[] img = ms.ToArray();
+                    Produits produits = new Produits(txt_nom.Text, Convert.ToInt32(txt_quantite.Text), Convert.ToDouble(txt_prix.Text), cmb_categorie.Text, txt_description.Text, img);
 
 
                     txt_nom.Clear();
@@ -121,7 +125,8 @@ namespace GestiondeVente
                     cmd.Parameters.AddWithValue("@prix", Convert.ToDouble(produits.Prix));
                     cmd.Parameters.AddWithValue("@categorie", produits.Categorie);
                     cmd.Parameters.AddWithValue("@description", produits.Description);
-                    cmd.Parameters.AddWithValue("@image", produits.Image);
+                    cmd.Parameters.Add("@image", MySqlDbType.Blob);
+                    cmd.Parameters["@image"].Value = img;
 
                     cmd.ExecuteNonQuery();
                     GetProduitsList();
@@ -132,6 +137,7 @@ namespace GestiondeVente
                     txt_description.Clear();
                     txt_prix.Clear();
                     txt_quantite.Clear();
+                    GetProduitsList();
 
                 }
                 catch (Exception ex)
@@ -269,6 +275,18 @@ namespace GestiondeVente
             Menu m = new Menu();
             m.Show();
             this.Hide();
+        }
+
+        private void image_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)guna2DataGridView1.DataSource;
+            dt.DefaultView.RowFilter = string.Format("nom LIKE '%{0}%' OR cat LIKE '%{0}%'", guna2TextBox1.Text);
+            guna2DataGridView1.DataSource = dt;
         }
     }
     

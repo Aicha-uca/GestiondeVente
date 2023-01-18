@@ -17,6 +17,9 @@ namespace GestiondeVente
         public Statistique()
         {
             InitializeComponent();
+            load_total();
+            load_produit();
+            load_client();
         }
 
 
@@ -78,11 +81,61 @@ namespace GestiondeVente
             {
                 dataX[i] = Convert.ToInt32(ord[i]);
             }
-           
-            formsPlot1.Plot.AddBar(dataX, dataY);
+            
+
+
+            formsPlot1.Plot.AddBar(dataX, dataY, color: System.Drawing.Color.Pink);
             formsPlot1.Plot.XTicks(dataY, labels);
             formsPlot1.Plot.SetAxisLimits(yMin: 0);
             formsPlot1.Refresh();
+        }
+        public void load_total()
+        {
+            MySqlConnection conn = new MySqlConnection("Datasource=localhost;database=gestionvente;port=3306;username=root;password=");
+            conn.Open();
+            MySqlCommand comm = new MySqlCommand("SELECT sum(total) FROM commande", conn);
+            Int32 count = Convert.ToInt32(comm.ExecuteScalar());
+            if (count > 0)
+            {
+                label1.Text = Convert.ToString(count.ToString()) + " DHS";
+            }
+            else
+            {
+                label1.Text = "0 DHS";
+            }
+            conn.Close();
+        }
+        public void load_produit()
+        {
+            MySqlConnection conn = new MySqlConnection("Datasource=localhost;database=gestionvente;port=3306;username=root;password=");
+            conn.Open();
+            MySqlCommand comm = new MySqlCommand("SELECT sum(quantite) FROM commande", conn);
+            Int32 count = Convert.ToInt32(comm.ExecuteScalar());
+            if (count > 0)
+            {
+                label2.Text = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                label2.Text = "0";
+            }
+            conn.Close();
+        }
+        public void load_client()
+        {
+            MySqlConnection conn = new MySqlConnection("Datasource=localhost;database=gestionvente;port=3306;username=root;password=");
+            conn.Open();
+            MySqlCommand comm = new MySqlCommand("SELECT count(*) FROM client", conn);
+            Int32 count = Convert.ToInt32(comm.ExecuteScalar());
+            if (count > 0)
+            {
+                label3.Text = Convert.ToString(count.ToString());
+            }
+            else
+            {
+                label3.Text = "0";
+            }
+            conn.Close();
         }
         private void Statistique_Load(object sender, EventArgs e)
         {

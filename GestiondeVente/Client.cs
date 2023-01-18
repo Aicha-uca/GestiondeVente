@@ -153,7 +153,9 @@ namespace GestiondeVente
 
         private void guna2ImageButton1_Click(object sender, EventArgs e)
         {
-            Close();
+            Menu m = new Menu();
+            m.Show();
+            this.Hide();
         }
 
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
