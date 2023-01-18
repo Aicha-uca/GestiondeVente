@@ -65,5 +65,12 @@ namespace GestiondeVente
             this.Hide();
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Statistique s = new Statistique();
+            s.Show();
+            this.Hide();
+        }
     }
 }
