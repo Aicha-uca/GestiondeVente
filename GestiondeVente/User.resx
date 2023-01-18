@@ -121,7 +121,7 @@
   <data name="btn_Ajouter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPOSURBVEhL7dLr
+        rAAAAKwBhgk01AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPOSURBVEhL7dLr
         U1R1HMfxIywSN8ULIhcXWIhLiNASyKLIAoKoBwEBgbiIGAx0tYtAZQaURlSDKVSQ2F2MFEWn+h+aamp8
         2vTQae9nz549e99P30OHpmmJzOmhn5l9tOf3fvCaL3N//8tuMcbMRUbXvxikG72u0I0uhOj6rq41Zsp/
         3/u+ZvTVt9bofqAwrgfrcU2hx/xaPS4/YMBn4QZ8FGX4fna9qUr+/O43zyD4JqMbW1yjww0KL1D4qxA9
@@ -144,7 +144,7 @@
   <data name="btn_Modifier.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIwSURBVEhLY6Ar
+        rAAAAKwBhgk01AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIwSURBVEhLY6Ar
         CFz3xcNn9cflHis/HHdZ9v6M/eJ3Z6wXvjtjNu/1GaPZr87ozXx5RnPa8zNqU56dUZz49Ixs/5Mzkj2P
         zoh2PTwj2PHgOF/r/eXcjffdocahgtCNX7oC133+77v603+gBf+BFvwHWvDfeuHb/0AL/gMt+A+04D/Q
         gv+qk5/9V5j49L9s35P/QAv+Ay34D7TgP2/r/f+czff+szXcbYcaCwGRW794AC34Ty0LWBvv/meou+UK
@@ -160,7 +160,7 @@
   <data name="btn_Supprimer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        6AAAAOgBhtX2rwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAOpSURBVFhH1Zfr
+        5wAAAOcB8BtYtQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAOpSURBVFhH1Zfr
         a1NJGIer7qrgrus/oKLCLsIKuusFFFH/iHz3k/thrUhykpM0rR5tTb23tiD4ScUuxGkT4yXVtnaNVqrt
         FrRCP9QL8YJabaGNIul535HXd45TtZrm0oYuPjAQwu/MPLwzc2ZOyXfFth76MfgfrA12ws7ADazxJ+C0
         v12eDLRhpe8KbPfFYXUJ0QwdLx7W3dFfd93B2ooeHCrvQgp2IpV1IAUSSP52bm1IZgu3y0i+OD4zL0Cd

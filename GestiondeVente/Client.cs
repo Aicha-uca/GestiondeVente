@@ -170,5 +170,21 @@ namespace GestiondeVente
             guna2GradientButton2.Enabled = true;
             guna2GradientButton3.Enabled = true;
         }
+
+       
+
+        private void guna2GradientButton4_Click_1(object sender, EventArgs e)
+        {
+
+            conx.connexion();
+            conx.cnxOpen();
+            MySqlCommand Command = new MySqlCommand("select * from client where nom like '%" + txt_nom.Text + "%';", conx.connMaster);
+            Command.ExecuteNonQuery();
+            dt = new DataTable();
+            da = new MySqlDataAdapter(Command);
+            da.Fill(dt);
+            guna2DataGridView1.DataSource = dt;
+            conx.cnxClose();
+        }
     }
 }

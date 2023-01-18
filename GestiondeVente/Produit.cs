@@ -252,10 +252,16 @@ namespace GestiondeVente
 
         private void guna2GradientButton4_Click(object sender, EventArgs e)
         {
+
+            conx.connexion();
             conx.cnxOpen();
-            MySqlCommand cmd = new MySqlCommand("SELECT * from produit ", conx.connMaster);
+            MySqlCommand Command = new MySqlCommand("select * from produit where nom like '%" + txt_nom.Text + "%';", conx.connMaster);
+            Command.ExecuteNonQuery();
+            dt = new DataTable();
+            da = new MySqlDataAdapter(Command);
             da.Fill(dt);
             guna2DataGridView1.DataSource = dt;
+            conx.cnxClose();
         }
 
         private void guna2ImageButton1_Click(object sender, EventArgs e)

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,7 +92,10 @@ namespace GestiondeVente
         }
 
         private void guna2GradientButton1_Click(object sender, EventArgs e)
+
+
         {
+            double prix = 0;
             if (guna2TextBox2.Text == "" || txt_nom.Text == "")
             {
                 DialogResult dialogClose = MessageBox.Show("Veuillez renseigner tous les champs", "Champs requis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -100,8 +104,22 @@ namespace GestiondeVente
             {
                 try
                 {
+                    cnx.connexion();
+                    cnx.cnxOpen();
+                    MySqlCommand Command = new MySqlCommand("select * from produit where id =" + id_produit, cnx.connMaster);
+                    MySqlDataReader dr = Command.ExecuteReader();
+                    while (dr.Read())
+                    {
 
-                    Commandes command = new Commandes(txt_nom.Text, id_produit, guna2DateTimePicker1.Value, Convert.ToInt16(guna2TextBox2.Text));
+                        prix = Convert.ToDouble(dr["prix"]);
+
+
+                    }
+                    cnx.cnxClose();
+
+                    double total = prix * Convert.ToDouble(guna2TextBox2.Text);
+
+                    Commandes command = new Commandes(txt_nom.Text, id_produit, guna2DateTimePicker1.Value, Convert.ToInt16(guna2TextBox2.Text), total);
 
                     txt_nom.Clear();
                     guna2TextBox2.Clear();
@@ -109,12 +127,13 @@ namespace GestiondeVente
                     cnx.connexion();
                     cnx.cnxOpen();
 
-                    MySqlCommand cmd = new MySqlCommand("INSERT INTO commande (client_email,produit_id,date_cmd,quantite) VALUES (@client_email,@produit_id,@date_cmd,@quantite)", cnx.connMaster);
+                    MySqlCommand cmd = new MySqlCommand("INSERT INTO commande (client_email,produit_id,date_cmd,quantite,total) VALUES (@client_email,@produit_id,@date_cmd,@quantite,@total)", cnx.connMaster);
                     cmd.Parameters.AddWithValue("@client_email", command.Cl_email);
                     cmd.Parameters.AddWithValue("@produit_id", command.Prod_id);
                     cmd.Parameters.AddWithValue("@date_cmd", command.Date_commande);
                     cmd.Parameters.AddWithValue("@quantite", command.Quantite);
-                   
+                    cmd.Parameters.AddWithValue("@total", command.Total);
+
                     cmd.ExecuteNonQuery();
                     cnx.cnxClose();
 
@@ -123,6 +142,7 @@ namespace GestiondeVente
                     cmd2.Parameters.AddWithValue("@id", id_produit);
                     cmd2.ExecuteNonQuery();
                     cnx.cnxClose();
+                    
                     GetCommandsList();
                     GetProduitsList();
 
@@ -148,5 +168,87 @@ namespace GestiondeVente
             m.Show();
             this.Hide();
         }
+
+        private void guna2CircleButton1_Click(object sender, EventArgs e)
+        {
+            double total = 0;
+            int total_produit = 0;
+
+
+            cnx.connexion();
+            cnx.cnxOpen();
+            MySqlCommand Command = new MySqlCommand("select * from commande", cnx.connMaster);
+            MySqlDataReader dr = Command.ExecuteReader();
+            while (dr.Read())
+            {
+
+                total_produit += Convert.ToInt32(dr["quantite"]);
+                total += Convert.ToDouble(dr["total"]);
+
+
+            }
+
+            cnx.cnxClose();
+        }
+
+        private void guna2GradientCircleButton1_Click(object sender, EventArgs e)
+        {
+            /* printPreviewDialog1.Document = printDocument1;
+             printPreviewDialog1.ShowDialog();
+            */
+            DGVPrinter p = new DGVPrinter();
+            p.printDocument = printDocument1;
+            p.Title = "Facture des Commandes";
+            p.SubTitle = string.Format("Date:{0}", DateTime.Now);
+           
+
+            p.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            p.PreviewDialog = printPreviewDialog1;
+           // p.printDocument = printDocument1;
+            p.PageNumbers = true;
+            p.PorportionalColumns = true;
+
+            p.HeaderCellAlignment = StringAlignment.Near;
+
+            p.Footer = "";
+
+            p.FooterSpacing = 15;
+            p.PrintPreviewDataGridView(guna2DataGridView1);
+        }
+
+       /* private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString("FACTURE", new Font("Arial", 20, FontStyle.Bold), Brushes.PeachPuff, new Point(400, 10));
+            e.Graphics.DrawString("Rapport du facture", new Font("Arial", 18, FontStyle.Bold), Brushes.PeachPuff, new Point(10, 40));
+
+            e.Graphics.DrawString("nom".ToString(), new Font("Arial", 15, FontStyle.Bold), Brushes.Aqua, new Point(10, 150));
+            e.Graphics.DrawString("| Quantite".ToString(), new Font("Arial", 15, FontStyle.Bold), Brushes.Aqua, new Point(500, 150));
+
+            e.Graphics.DrawString("________________________________________________________________________________________", new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(10, 180));
+
+            cnx.connexion();
+            cnx.cnxOpen();
+            MySqlCommand Command = new MySqlCommand("select c.id, p.nom ,c.quantite from commande c, produit p where c.produit_id=p.id order by c.quantite limit 5", cnx.connMaster);
+            MySqlDataReader dr = Command.ExecuteReader();
+            int i = 210;
+            while (dr.Read())
+            {
+
+                e.Graphics.DrawString("_________________________________________________________________________________________________________", new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(10, i));
+
+                e.Graphics.DrawString(dr["nom"].ToString(), new Font("Arial", 13, FontStyle.Regular), Brushes.Aqua, new Point(10, i + 3));
+                e.Graphics.DrawString("|" + dr["quantite"].ToString(), new Font("Arial", 13, FontStyle.Regular), Brushes.Aqua, new Point(500, i + 3));
+
+                i += 30;
+
+            }
+
+            cnx.cnxClose();
+
+
+
+        }*/
+
+       
     }
 }

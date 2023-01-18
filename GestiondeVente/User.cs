@@ -159,5 +159,19 @@ namespace GestiondeVente
             m.Show();
             this.Hide();
         }
+
+        private void guna2GradientButton4_Click(object sender, EventArgs e)
+        {
+
+            conx.connexion();
+            conx.cnxOpen();
+            MySqlCommand Command = new MySqlCommand("select * from users where nom like '%" + txt_nom.Text + "%';", conx.connMaster);
+            Command.ExecuteNonQuery();
+            dt = new DataTable();
+            da = new MySqlDataAdapter(Command);
+            da.Fill(dt);
+            guna2DataGridView1.DataSource = dt;
+            conx.cnxClose();
+        }
     }
 }

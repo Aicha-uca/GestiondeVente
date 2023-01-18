@@ -238,7 +238,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 363);
             this.Controls.Add(this.guna2ImageButton1);
             this.Controls.Add(this.guna2DataGridView1);
             this.Controls.Add(this.txt_libelle);
